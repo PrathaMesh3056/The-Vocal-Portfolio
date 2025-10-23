@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # The Vocal Portfolio
 
 Welcome to my personal portfolio, reimagined. This project is a complete portfolio website designed to showcase my skills and projects, with one unique feature: **full voice-based navigation.**
@@ -233,4 +233,4 @@ Example Voice Commands
 [ ] Expand the list of available commands (e.g., "Open first project").
 
 [ ] Add visual feedback for when the application is actively listening.
->>>>>>> c66ae4f8de648a2c334576510ed0624a441d92c0
+
