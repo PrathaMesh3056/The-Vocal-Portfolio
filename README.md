@@ -5,7 +5,7 @@ Welcome to my personal portfolio, reimagined. This project is a complete portfol
 
 You can browse the entire site, from the "About Me" section to my "Projects" and "Contact" page, using only your voice. This project combines a modern React frontend with a powerful Python backend that handles speech-to-text processing and command interpretation.
 
-![A placeholder for a cool demo GIF of your portfolio being navigated by voice]https://pin.it/5jScXYOLt
+![A placeholder for a cool demo GIF of your portfolio being navigated by voice]D:\Prathamesh\Speech-to-text\MyPortfolio\sound.png
 
 
 ## ✨ Features
