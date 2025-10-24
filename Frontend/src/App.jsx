@@ -1,6 +1,6 @@
 
 import React, { use, useState } from "react";
-import Github from"./components/github.jsx";
+import Github from "./components/github.jsx";
 import About from "./components/About.jsx";
 import Contact from "./components/contact.jsx";
 import Projects from "./components/projects.jsx";
@@ -58,11 +58,11 @@ function App() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 p-4 flex flex-col items-center">
       <div className="w-full max-w-4xl py-8">
         <div className="text-center mb-12 animate-fadeIn">
-          <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-3">
+          <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-cyan-300">
             Voice-Controlled Portfolio
           </h1>
-          <p className="text-gray-600 text-lg">
-            Navigate using your voice - the future of web interaction
+          <p className="text-slate-400">
+            Navigate using your voice...
           </p>
         </div>
 
