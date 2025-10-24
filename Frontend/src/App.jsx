@@ -1,4 +1,3 @@
-
 import React, { use, useState } from "react";
 import Github from "./components/github.jsx";
 import About from "./components/About.jsx";
@@ -7,7 +6,7 @@ import Projects from "./components/projects.jsx";
 import Resume from "./components/Resume.jsx";
 import NameInput from "./components/NameInput.jsx";
 import VoiceControls from "./components/VoiceControls.jsx";
-import TranscriptionDisplay from "./components/TranscriptionDisplay.jsx";
+import TranscriptionDisplay from "./components/TranscriptionDisplay.jsx"; // This import is now unused
 import MessageDisplay from "./components/MessageDisplay.jsx";
 import SectionRenderer from "./components/SectionRenderer.jsx";
 import { useVoiceRecorder } from "./hooks/useVoiceRecorder.js";
@@ -55,10 +54,10 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 p-4 flex flex-col items-center">
+    <div className="min-h-screen p-4 flex flex-col items-center">
       <div className="w-full max-w-4xl py-8">
         <div className="text-center mb-12 animate-fadeIn">
-          <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-cyan-300">
+          <h1 className="text-4xl font-bold text-cyan-500">
             Voice-Controlled Portfolio
           </h1>
           <p className="text-slate-400">
@@ -84,7 +83,8 @@ function App() {
               stopRecording={stopRecording}
             />
 
-            <TranscriptionDisplay transcription={transcription} />
+            {/* --- DELETE OR COMMENT OUT THIS LINE --- */}
+            {/* <TranscriptionDisplay transcription={transcription} /> */}
 
             <MessageDisplay message={message} />
 

@@ -16,7 +16,6 @@ CORS_ORIGINS = [
 
 
 VALID_COMMANDS = [
-    "open home",
     "open about",
     "open projects",
     "open resume",

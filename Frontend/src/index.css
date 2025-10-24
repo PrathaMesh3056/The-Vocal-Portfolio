@@ -3,6 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 /* 2. Add your custom base styles in a @layer */
 @layer base {
   body {

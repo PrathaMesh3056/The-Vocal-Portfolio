@@ -2,8 +2,13 @@
 export default {
   content: [
     "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}", // This line scans all your component files
+    "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  // --- ADD THIS BLOCK ---
+  safelist: [
+    'bg-slate-900',
+  ],
+  // ---------------------
   theme: {
     extend: {},
   },
