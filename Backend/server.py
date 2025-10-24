@@ -15,7 +15,7 @@ from notifications import send_email
 
 # --- FastAPI App Setup ---
 app = FastAPI()
-app.add_middleware(
+app.add_middleware( 
     CORSMiddleware,
     allow_origins=CORS_ORIGINS,
     allow_credentials=True,
@@ -23,16 +23,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# -------------------------------
-# Root endpoint
-# -------------------------------
+
 @app.get("/")
 async def root():
     return {"message": "Welcome to the Voice Portfolio API"}
 
-# -------------------------------
-# Main Transcription Endpoint
-# -------------------------------
+
 @app.post("/transcribe")
 async def transcribe(file: UploadFile = File(...), name: str = Form(...)):
     
@@ -44,19 +40,19 @@ async def transcribe(file: UploadFile = File(...), name: str = Form(...)):
     # 2. Transcribe the audio
     transcribed_text = None
     try:
-        # Try local Whisper first
+        
         transcribed_text = transcribe_audio_local(audio_path)
     except Exception as e:
         print(f"Local transcription failed: {e}")
 
-    # If local Whisper failed or gave no text, try Gemini
+    
     if not transcribed_text:
         transcribed_text = fallback_to_gemini(audio_path)
     
     if not transcribed_text:
         raise HTTPException(status_code=500, detail="Audio transcription failed.")
 
-    # 3. Interpret the command using fuzzy matching
+   
     response = get_best_command(transcribed_text)
     
     # If no match, create a default "unknown" response

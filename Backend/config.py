@@ -22,7 +22,6 @@ VALID_COMMANDS = [
     "open resume",
     "open contact",
     "open github",
-    "open linkedin"
 ]
 
-CONFIDENCE_THRESHOLD = 60
+CONFIDENCE_THRESHOLD = 0

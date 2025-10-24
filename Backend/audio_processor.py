@@ -3,14 +3,9 @@ import requests
 import base64
 import io
 import mimetypes
-# Import your Gemini API key from config
 from config import GEMINI_API_KEY
 
-# --- Whisper Model ---
-# 
-# CRITICAL: Load the model ONCE when the server starts.
-# This saves several seconds on every request.
-#
+
 print("Loading Whisper 'base' model...")
 try:
     whisper_model = WhisperModel("base", device="cpu")
@@ -20,9 +15,7 @@ except Exception as e:
     whisper_model = None
 
 def transcribe_audio_local(audio_path: str):
-    """
-    Transcribes audio using the pre-loaded local Whisper model.
-    """
+    
     if not whisper_model:
         raise Exception("Whisper model is not loaded.")
         
@@ -31,10 +24,7 @@ def transcribe_audio_local(audio_path: str):
     return text if text else None
 
 def fallback_to_gemini(audio_path: str):
-    """
-    Transcribes audio using the Gemini 1.5 Flash API as a fallback.
-    This reads the file, base64-encodes it, and sends it as inlineData.
-    """
+    
     print("Falling back to Gemini 1.5 Flash for transcription...")
     if not GEMINI_API_KEY:
         print("Gemini API key missing — skipping fallback.")

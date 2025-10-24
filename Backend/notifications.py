@@ -1,13 +1,10 @@
 import smtplib
 from email.mime.text import MIMEText
 from datetime import datetime
-# Import email credentials from your config file
 from config import GMAIL_EMAIL, GMAIL_APP_PASSWORD, TO_EMAIL
 
 def send_email(event_type: str, message: str, name: str):
-    """
-    Sends an email notification via Gmail.
-    """
+    
     if not (GMAIL_EMAIL and GMAIL_APP_PASSWORD and TO_EMAIL):
         print("Email credentials not set. Skipping email notification.")
         return
