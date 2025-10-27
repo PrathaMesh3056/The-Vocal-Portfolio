@@ -1,0 +1,45 @@
+.animated-background-grid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 0; /* Behind content, but visible */
+  pointer-events: none;
+  opacity: 0.2;
+  filter: blur(1px);
+}
+
+.animated-element {
+  position: absolute;
+  color: #333;
+  font-family: 'Fira Code', 'Cascadia Code', monospace;
+  font-size: 10px;
+  white-space: nowrap;
+  animation: floatAndFade 20s infinite ease-in-out;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.animated-element.icon {
+  font-size: 20px;
+  color: #555;
+  animation: floatRotateAndFade 25s infinite ease-in-out;
+}
+
+@keyframes floatAndFade {
+  0% { transform: translate(var(--x-start), var(--y-start)) scale(0.5); opacity: 0; }
+  20% { opacity: 0.3; }
+  50% { transform: translate(var(--x-end), var(--y-end)) scale(1); opacity: 0.5; }
+  80% { opacity: 0; }
+  100% { transform: translate(var(--x-end), var(--y-end)) scale(1.2); opacity: 0; }
+}
+
+@keyframes floatRotateAndFade {
+  0% { transform: translate(var(--x-start), var(--y-start)) rotate(0deg) scale(0.6); opacity: 0; }
+  15% { opacity: 0.4; }
+  50% { transform: translate(var(--x-end), var(--y-end)) rotate(360deg) scale(1.1); opacity: 0.6; }
+  85% { opacity: 0; }
+  100% { transform: translate(var(--x-end), var(--y-end)) rotate(720deg) scale(1.3); opacity: 0; }
+}

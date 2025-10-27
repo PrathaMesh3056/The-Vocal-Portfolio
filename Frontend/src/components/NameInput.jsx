@@ -1,50 +1,70 @@
 import React from 'react';
-import { User } from "lucide-react";
 
+// --- INLINE SVGs ---
+const MicIcon = ({ className }) => (
+  <svg className={className} xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24">
+    <g fill="none" className="mic">
+      <rect width={8} height={13} x={8} y={2} fill="currentColor" rx={4} />
+      <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 11a7 7 0 1 0 14 0m-7 10v-2" />
+    </g>
+  </svg>
+);
+
+const SendIcon = ({ className }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    <path d="m22 2-7 20-4-9-9-4 20-7Z" />
+    <path d="M22 2 11 13" />
+  </svg>
+);
+
+
+// NameInput (from your file)
 const NameInput = ({ name, setName, handleSaveName }) => {
   return (
-    <div className="w-full max-w-md animate-fadeIn">
-      <div className="bg-black rounded-2xl shadow-2xl p-8 border border-gray-700">
-        <div className="flex justify-center mb-6">
-          {/*
-            ICON:
-            - Changed gradient to a simple, darker slate.
-          */}
-          <div className="bg-slate-700 p-4 rounded-full">
-            <User className="w-8 h-8 text-cyan" />
-          </div>
-        </div>
+    <div className="w-full max-w-lg mt-24 animate-fadeIn flex flex-col items-center">
+      {/* Top section: Subtitle, Title, Description */}
+      <div className="text-center mb-6">
+        
+        <h2 className="text-6xl font-extrabold text-white">Wellcome!!</h2>
+        <p className="text-gray-500 text-l mt-4">Enter your name to begin your journey</p>
+      </div>
 
-        <h2 className="text-2xl font-bold text-center text-cyan-700 mb-2">
-          Welcome!
-        </h2>
-        <p className="text-center text-white mb-6">
-          Let's personalize your experience
-        </p>
+      {/* Input Card */}
+      <div className="bg-gray-900/70 backdrop-blur-sm rounded-xl p-8 border border-gray-800 shadow-xl w-full">
         <input
           type="text"
           placeholder="Enter your name"
           value={name}
           onChange={(e) => setName(e.target.value)}
           onKeyPress={(e) => e.key === 'Enter' && handleSaveName()}
-          /*
-            INPUT FIELD:
-            - We'll use the 'sky' blue for focus, as it's a standard accent.
-          */
-          className="w-full p-4 border-2 border-slate-600 rounded-xl focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-500/50 transition-all mb-4 text-slate-100 bg-slate-900 placeholder:text-slate-500"
+          className="w-full p-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 bg-gray-800 text-white placeholder-gray-500 transition-all text-lg mb-6"
         />
-        {/*
-          BUTTON:
-          - Replaced the bright gradient with a clean, light button.
-          - This "pops" against the dark card and looks very professional.
-        */}
         <button
           onClick={handleSaveName}
-          className="w-full bg-slate-100 text-slate-900 px-6 py-4 rounded-xl font-semibold hover:bg-slate-200 transition-all transform hover:scale-105 shadow-lg"
+          className="w-full bg-gray-700 text-white px-5 py-3 rounded-lg font-semibold text-lg
+                     flex items-center justify-center space-x-2
+                     hover:bg-gray-600 transition-all transform hover:scale-[1.01] shadow-lg"
         >
-          Get Started
+          <span>Submit</span>
+          <SendIcon className="w-5 h-5" />
         </button>
       </div>
+       <p className="text-gray-500 text-sm mt-8">MADE BY PRATHAMESH</p>
+       <p className="text-gray-400 text-sm\ mb-2 flex items-center justify-center space-x-2">
+          <MicIcon className="w-4 h-4 text-gray-400" />
+          <span>This portfolio is directed by voice commands</span>
+        </p>
     </div>
   );
 };

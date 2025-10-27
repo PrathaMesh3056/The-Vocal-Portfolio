@@ -1,9 +1,9 @@
 import React from 'react';
 
 const Contact = () => (
-  <div className="bg-white rounded-xl shadow-lg p-8 animate-fadeIn">
-    <h2 className="text-2xl font-bold text-gray-800 mb-4">Contact Me</h2>
-    <div className="space-y-3 text-gray-600">
+  <div className="bg-black rounded-xl shadow-lg p-8 animate-fadeIn">
+    <h2 className="text-2xl font-bold text-white mb-4">Contact Me</h2>
+    <div className="space-y-3 text-white ">
       <p>
         <a
           href="https://mail.google.com/mail/?view=cm&fs=1&to=patil30pratham@gmail.com"

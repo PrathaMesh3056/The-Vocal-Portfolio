@@ -3,6 +3,7 @@
 import React from 'react';
 import { Volume2 } from "lucide-react";
 
+
 const TranscriptionDisplay = ({ transcription }) => {
   if (!transcription) return null;
 

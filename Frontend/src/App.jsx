@@ -1,4 +1,4 @@
-import React, { use, useState } from "react";
+import React, { useState, useEffect } from "react";
 import Github from "./components/github.jsx";
 import About from "./components/About.jsx";
 import Contact from "./components/contact.jsx";
@@ -6,31 +6,49 @@ import Projects from "./components/projects.jsx";
 import Resume from "./components/Resume.jsx";
 import NameInput from "./components/NameInput.jsx";
 import VoiceControls from "./components/VoiceControls.jsx";
-import TranscriptionDisplay from "./components/TranscriptionDisplay.jsx"; // This import is now unused
 import MessageDisplay from "./components/MessageDisplay.jsx";
 import SectionRenderer from "./components/SectionRenderer.jsx";
+import Header from "./components/Header.jsx";
+import AnimatedBackground from "./components/AnimatedBackground.jsx";
+
 import { useVoiceRecorder } from "./hooks/useVoiceRecorder.js";
 import { useTextToSpeech } from "./hooks/useTextToSpeech.js";
 import { useResumeHandler } from "./hooks/useResumeHandler.js";
 import { useGithubHandler } from "./hooks/useGithubHandler.js";
+
+// Import all styles
 import "./index.css";
+import "./OrbStyles.css";
+import "./BackgroundAnimationStyles.css";
 
 function App() {
   const [name, setName] = useState("");
   const [nameSaved, setNameSaved] = useState(false);
-  const [transcription, setTranscription] = useState("");
+  const [transcription, setTranscription] = useState(""); // Kept for potential future use
   const [message, setMessage] = useState("");
   const [activeSection, setActiveSection] = useState("");
 
-  const { recording, loading, startRecording, stopRecording } = useVoiceRecorder();
+  const { recording, loading, startRecording, stopRecording } =
+    useVoiceRecorder();
 
   useTextToSpeech(message, activeSection);
   useResumeHandler(activeSection);
   useGithubHandler(activeSection);
 
+  // 3-second timer for toast messages
+  useEffect(() => {
+    if (message) {
+      const timer = setTimeout(() => {
+        setMessage("");
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [message]);
+
   const handleSaveName = () => {
     if (!name.trim()) {
-      alert("Please enter your name");
+      // Use the toast message instead of alert
+      setMessage("Error: Please enter your name");
       return;
     }
     setNameSaved(true);
@@ -53,20 +71,19 @@ function App() {
     startRecording(name, handleTranscriptionComplete);
   };
 
+  // New layout structure
   return (
-    <div className="min-h-screen p-4 flex flex-col items-center">
-      <div className="w-full max-w-4xl py-8">
-        <div className="text-center mb-12 animate-fadeIn">
-          <h1 className="text-4xl font-bold text-cyan-500">
-            Voice-Controlled Portfolio
-          </h1>
-          <p className="text-slate-400">
-            Navigate using your voice...
-          </p>
-        </div>
+    <div className="min-h-screen app-container p-4 flex flex-col items-center justify-center text-white">
+     
+      <AnimatedBackground />
+      <Header />
+      <MessageDisplay message={message} />
 
+      {/* Content area (z-index 10) */}
+      <div className="relative z-10 w-full flex flex-col items-center px-4">
         {!nameSaved ? (
-          <div className="flex justify-center">
+          // --- STATE 1: Name Input ---
+          <div className="flex justify-center w-full">
             <NameInput
               name={name}
               setName={setName}
@@ -74,7 +91,16 @@ function App() {
             />
           </div>
         ) : (
-          <div className="flex flex-col items-center space-y-6">
+          // --- STATE 2: Voice Controls ---
+          <div className="flex flex-col items-center  mt-22 w-full">
+            {" "}
+            {/* mt-24 to clear header */}
+            <h1 className="text-4xl font-bold text-cyan-500 mb-3 animate-fadeIn">
+              Voice-Controlled Portfolio
+            </h1>
+            <p className="text-slate-400 text-lg mb-8 animate-fadeIn">
+              Navigate using your voice, {name}!
+            </p>
             <VoiceControls
               name={name}
               recording={recording}
@@ -82,12 +108,6 @@ function App() {
               startRecording={handleStartRecording}
               stopRecording={stopRecording}
             />
-
-            {/* --- DELETE OR COMMENT OUT THIS LINE --- */}
-            {/* <TranscriptionDisplay transcription={transcription} /> */}
-
-            <MessageDisplay message={message} />
-
             <SectionRenderer
               activeSection={activeSection}
               About={About}

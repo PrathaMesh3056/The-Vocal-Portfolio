@@ -1,20 +1,19 @@
-/* 1. Import Tailwind's base, components, and utilities */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 
-/* 2. Add your custom base styles in a @layer */
+
 @layer base {
   body {
-    /* This is Tailwind's 'slate-900' - the one their site uses */
+    
     background-color: #0f172a;
-    /* You could also just use Tailwind's class */
-    /* @apply bg-slate-900; */
+    
   }
 }
 
-/* 3. Add all your custom animations and classes */
+
 @keyframes fadeIn {
   from {
     opacity: 0;
